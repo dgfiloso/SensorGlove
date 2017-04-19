@@ -16,7 +16,7 @@ BIOS_INC  = -I"C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/pa
 
 TARGET_INC = -I"C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/"
 
-INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="E:/David/Teleco/Curso_2016-2017/ELCO/SensorGlove" --include_path="E:/David/Teleco/Curso_2016-2017/ELCO/SensorGlove" --include_path="C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include"  -IC:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ 
+INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="E:/David/Teleco/Curso_2016-2017/ELCO/SensorGloveProject/Guante" --include_path="E:/David/Teleco/Curso_2016-2017/ELCO/SensorGloveProject/Guante" --include_path="C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include"  -IC:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ 
 
 CC = C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include
 ASM = C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include

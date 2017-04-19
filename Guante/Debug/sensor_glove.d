@@ -158,29 +158,28 @@ sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/interfaces/ITaskSupport.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task__epilogue.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/package/Task_SupportProxy.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/I2C.h
-sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stdbool.h
-sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/PIN.h
-sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/ADC.h
-sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/adc/ADCCC26XX.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/pin/PINCC26XX.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/ioc.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_types.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_chip_def.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_memmap.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ioc.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ints.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/interrupt.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_nvic.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/debug.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/cpu.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_cpu_scs.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/rom.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/gpio.h
-sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_gpio.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Semaphore.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Diags.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Assert.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Queue.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Clock.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event__prologue.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Assert.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Diags.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Queue.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Clock.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event__epilogue.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi.h
 sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
 sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h
@@ -197,6 +196,35 @@ sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.
 sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Error.h
 sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi__epilogue.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Power.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/interfaces/IPower.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h
+sensor_glove.obj: C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/rom.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_types.h
+sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stdbool.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_chip_def.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/I2C.h
+sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/PIN.h
+sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/ADC.h
+sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/adc/ADCCC26XX.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/pin/PINCC26XX.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/ioc.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_memmap.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ioc.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ints.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/interrupt.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_nvic.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/debug.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/cpu.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_cpu_scs.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/gpio.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_gpio.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi.h
 sensor_glove.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/Power.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/utils/List.h
@@ -209,6 +237,9 @@ sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_adi.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_adi_4_aux.h
 sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_anaif.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/aux_wuc.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_wuc.h
+sensor_glove.obj: C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_evctl.h
 sensor_glove.obj: ../SensorMpu9250.h
 sensor_glove.obj: ../SensorI2C.h
 sensor_glove.obj: ../Board.h
@@ -372,29 +403,28 @@ C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h:
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/interfaces/ITaskSupport.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task__epilogue.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/I2C.h: 
-C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stdbool.h: 
-C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/PIN.h: 
-C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/ADC.h: 
-C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/adc/ADCCC26XX.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/pin/PINCC26XX.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/ioc.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_types.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_chip_def.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_memmap.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ioc.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ints.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/interrupt.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_nvic.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/debug.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/cpu.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_cpu_scs.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/rom.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/gpio.h: 
-C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_gpio.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Semaphore.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Diags.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Assert.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Clock.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event__prologue.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Assert.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Diags.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Log.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Clock.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Task.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/knl/Event__epilogue.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi.h: 
 C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h: 
@@ -411,6 +441,35 @@ C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Error.h: 
 C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi__epilogue.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Power.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/interfaces/IPower.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_32_00_06_core/packages/xdc/runtime/IModule.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/rom.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_types.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stdbool.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_chip_def.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/I2C.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/PIN.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/ADC.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/adc/ADCCC26XX.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/pin/PINCC26XX.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/ioc.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_memmap.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ioc.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_ints.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/interrupt.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_nvic.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/debug.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/cpu.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_cpu_scs.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/gpio.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_gpio.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/bios_6_46_01_37/packages/ti/sysbios/family/arm/m3/Hwi.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.2.LTS/include/stddef.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/Power.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/tidrivers_cc13xx_cc26xx_2_21_00_04/packages/ti/drivers/utils/List.h: 
@@ -423,6 +482,9 @@ C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_e
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_adi.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_adi_4_aux.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_anaif.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/driverlib/aux_wuc.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_wuc.h: 
+C:/ti/tirtos_cc13xx_cc26xx_2_21_00_06/products/cc26xxware_2_24_03_17272/inc/hw_aux_evctl.h: 
 ../SensorMpu9250.h: 
 ../SensorI2C.h: 
 ../Board.h: 

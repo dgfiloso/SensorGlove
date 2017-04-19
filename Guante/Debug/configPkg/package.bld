@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'E:/David/Teleco/Curso_2016-2017/ELCO/SensorGlove/empty.cfg',
+        cfgScript: 'E:/David/Teleco/Curso_2016-2017/ELCO/SensorGloveProject/Guante/empty.cfg',
         profile: 'release',
         cfgHome: 'configPkg',
 });
@@ -41,7 +41,7 @@ else {
 
 var thisObj = {
     cfg:        '../empty.cfg',
-    outputPath: 'E:/David/Teleco/Curso_2016-2017/ELCO/SensorGlove/Debug/configPkg',
+    outputPath: 'E:/David/Teleco/Curso_2016-2017/ELCO/SensorGloveProject/Guante/Debug/configPkg',
     exeName:    'empty' + suffix,
     exeIntName: 'empty' + suffix.replace('.', '_'),
     targ:       targ,

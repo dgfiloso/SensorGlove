@@ -41,6 +41,10 @@
 #include <ti/sysbios/BIOS.h>
 #include <ti/sysbios/knl/Clock.h>
 #include <ti/sysbios/knl/Task.h>
+#include <ti/sysbios/knl/Semaphore.h>
+#include <ti/sysbios/family/arm/m3/Hwi.h>
+#include <ti/sysbios/family/arm/m3/Power.h>
+#include <driverlib/rom.h>
 
 /* TI-RTOS Header files */
 #include <ti/drivers/I2C.h>
@@ -50,6 +54,10 @@
 // #include <ti/drivers/Watchdog.h>
 #include <ti/drivers/ADC.h>
 #include <ti/drivers/adc/ADCCC26XX.h>
+#include <driverlib/aux_adc.h>
+#include <driverlib/aux_wuc.h>
+#include <inc/hw_aux_evctl.h>
+
 #include "SensorMpu9250.h"
 #include "SensorI2C.h"
 
@@ -60,27 +68,41 @@
 #define TASK1STACKSIZE   1024
 #define TASK2STACKSIZE   512
 
-Task_Struct task0Struct;
-Task_Struct task1Struct;
-Task_Struct task2Struct;
-Char task0Stack[TASK0STACKSIZE];
-Char task1Stack[TASK1STACKSIZE];
-Char task2Stack[TASK2STACKSIZE];
+#define SAMPLECOUNT 8
+#define SAMPLETYPE uint16_t
+#define SAMPLESIZE sizeof(SAMPLETYPE)
+
+/*  Task Structs and variables  */
+static Task_Struct task0Struct;
+static Task_Struct task1Struct;
+static Task_Struct task2Struct;
+static Char task0Stack[TASK0STACKSIZE];
+static Char task1Stack[TASK1STACKSIZE];
+static Char task2Stack[TASK2STACKSIZE];
+
+/*  Semaphore Structs and variables */
+static Semaphore_Struct sem;
+static Semaphore_Handle hSem;
+
+/*  ADC Structs and variables   */
+static Hwi_Struct hwi;
+static SAMPLETYPE adcSamples[SAMPLECOUNT];
+static SAMPLETYPE singleSample;
 
 /* Pin driver handle */
-static PIN_Handle ledPinHandle;
-static PIN_State ledPinState;
+static PIN_Handle pinHandle;
+static PIN_State pinState;
 
-/*
- * Application LED pin configuration table:
- *   - All LEDs board LEDs are off.
- */
-PIN_Config ledPinTable[] = {
-    Board_LED0 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
-    Board_LED1 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
-    Board_DP1  | PIN_INPUT_EN | PIN_PULLUP,
+PIN_Config pinTable[] = {
+    Board_LED0      | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
+    Board_LED1      | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
+    Board_DP2       | PIN_INPUT_EN       | PIN_BM_HYSTERESIS           | PIN_BM_PULLING ,
+    Board_I2C0_SDA1 | PIN_INPUT_EN       | PIN_PULLUP   | PIN_OPENDRAIN,
+    Board_I2C0_SCL1 | PIN_INPUT_EN       | PIN_PULLUP   | PIN_OPENDRAIN,
     PIN_TERMINATE
 };
+
+/*  Tasks   ----------------------------------------------------------------------------*/
 
 /*
  *  ======== heartBeatFxn ========
@@ -91,7 +113,7 @@ Void heartBeatFxn(UArg arg0, UArg arg1)
 {
     while (1) {
         Task_sleep((UInt)arg0);
-        PIN_setOutputValue(ledPinHandle, Board_LED0,
+        PIN_setOutputValue(pinHandle, Board_LED0,
                            !PIN_getOutputValue(Board_LED0));
     }
 }
@@ -104,30 +126,37 @@ Void taskMpu9250 (UArg arg0, UArg arg1)
     float       gyroConvData[3];
     int         i;
 
-    SensorI2C_open();
+    while (!SensorI2C_open())
+    {
+        System_printf("Cannot open I2C\n");
+        System_flush();
+    }
+
     SensorMpu9250_powerOn();
-    if (SensorMpu9250_init())
+    while (!SensorMpu9250_init())
     {
         System_printf("Cannot initialize MPU9250\n");
+        System_flush();
     }
 
     SensorMpu9250_enable(6);        //  Enable all axes
-    if(SensorMpu9250_accSetRange(ACC_RANGE_16G))
+    while (!SensorMpu9250_accSetRange(ACC_RANGE_16G))
     {
         System_printf("Accelerometer range set failed\n");
+        System_flush();
     }
-    System_printf("MPU9250 initialized correctly!\n");
-    System_flush();
 
     while(1)
     {
-        if (SensorMpu9250_accRead(accelRawData))
+        while (!SensorMpu9250_accRead(accelRawData))
         {
             System_printf("Imposible to read accelerometer data\n");
+            System_flush();
         }
-        if (SensorMpu9250_gyroRead(gyroRawData))
+        while (!SensorMpu9250_gyroRead(gyroRawData))
         {
             System_printf("Imposible to read gyro data\n");
+            System_flush();
         }
 
         for(i=0; i<3; i++)
@@ -140,8 +169,35 @@ Void taskMpu9250 (UArg arg0, UArg arg1)
     }
 }
 
-Void taskGauge (UArg arg0, UArg arg1)
-{
+//Void taskFlexSensor (UArg arg0, UArg arg1)
+//{
+//    int32_t adcVoltage;
+//
+//    // Enable clock for ADC digital and analog interface (not currently enabled in driver)
+//    AUXWUCClockEnable(AUX_WUC_ADI_CLOCK | AUX_WUC_ADC_CLOCK | AUX_WUC_OSCCTRL_CLOCK);
+//    // Connect AUX IO7 (DIO23) as analog input.
+//    AUXADCSelectInput(ADC_COMPB_IN_AUXIO7);
+//
+//    // Set up ADC
+//    AUXADCEnableSync(AUXADC_REF_FIXED, AUXADC_SAMPLE_TIME_2P7_US, AUXADC_TRIGGER_MANUAL);
+//
+//    while(1)
+//    {
+//        // Trigger ADC sampling
+//        AUXADCGenManualTrigger();
+//
+//        Task_sleep(100 * 1000 / Clock_tickPeriod);
+//
+//        singleSample = AUXADCReadFifo();
+//        adcVoltage = AUXADCValueToMicrovolts(AUXADC_FIXED_REF_VOLTAGE_NORMAL, singleSample);
+//
+//        System_printf("Muestra: %d mV", adcVoltage);
+//        System_flush();
+//
+//    }
+
+
+/************************************************************************************/
 //    ADC_Handle adc;
 //    ADC_Params params;
 //    int_fast16_t res;
@@ -162,7 +218,7 @@ Void taskGauge (UArg arg0, UArg arg1)
 //    }
 //
 //    ADC_close(adc);
-}
+//}
 /*
  *  ======== main ========
  */
@@ -174,7 +230,7 @@ int main(void)
 
     /* Call board init functions */
     Board_initGeneral();
-    Board_initI2C();
+//    Board_initI2C();
     // Board_initSPI();
     // Board_initUART();
     // Board_initWatchdog();
@@ -191,20 +247,29 @@ int main(void)
     task1Params.stackSize = TASK1STACKSIZE;
     task1Params.stack = &task1Stack;
     Task_construct(&task0Struct, (Task_FuncPtr)taskMpu9250, &task1Params, NULL);
-//
-//    /*  Construct Gauge Task thread */
+
+//    /*  Construct FlexSensor Task thread */
 //    Task_Params_init(&task2Params);
 //    task2Params.stackSize = TASK2STACKSIZE;
 //    task2Params.stack = &task2Stack;
-//    Task_construct(&task2Struct, (Task_FuncPtr)taskGauge, &task2Params, NULL);
+//    Task_construct(&task2Struct, (Task_FuncPtr)taskFlexSensor, &task2Params, NULL);
+
+    // Construct semaphore used for pending in task
+    Semaphore_Params sParams;
+    Semaphore_Params_init(&sParams);
+    sParams.mode = Semaphore_Mode_BINARY;
+
+    Semaphore_construct(&sem, 0, &sParams);
+    hSem = Semaphore_handle(&sem);
+
 
     /* Open LED pins */
-    ledPinHandle = PIN_open(&ledPinState, ledPinTable);
-    if(!ledPinHandle) {
-        System_abort("Error initializing board LED pins\n");
+    pinHandle = PIN_open(&pinState, pinTable);
+    if(!pinHandle) {
+        System_abort("Error initializing board pins\n");
     }
 
-    PIN_setOutputValue(ledPinHandle, Board_LED1, 1);
+    PIN_setOutputValue(pinHandle, Board_LED1, 1);
 
     System_printf("Starting the example\nSystem provider is set to SysMin. "
                   "Halt the target to view any SysMin contents in ROV.\n");

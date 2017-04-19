@@ -1780,7 +1780,7 @@ __FAR__ const xdc_SizeT ti_sysbios_knl_Task_Module_State_terminatedQ__O = offset
  *  Define absolute path prefix for this executable's
  *  configuration generated files.
  */
-xdc__META(__ASM__, "@(#)__ASM__ = E:/David/Teleco/Curso_2016-2017/ELCO/SensorGlove/Debug/configPkg/package/cfg/empty_pem3");
+xdc__META(__ASM__, "@(#)__ASM__ = E:/David/Teleco/Curso_2016-2017/ELCO/SensorGloveProject/Guante/Debug/configPkg/package/cfg/empty_pem3");
 
 /*
  *  ======== __ISA__ ========
