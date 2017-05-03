@@ -36,7 +36,7 @@ const int FLEX_PIN      = A3;         //  Pin de lectura del Flex Sensor
 const float VCC         = 4.98;       //  Tensión de alimentación del divisor de tensión
 const float R_DIV       = 10000;      //  Resistencia en serie con el Flex Sensor
 const float STRAIGHT_R  = 38400.0;    //  Resistencia del Flex Sensor estirado
-const float BEND_R      = 1700000.0;  //  Resistencia del Flex Sensor doblado 90 grados
+const float BEND_R      = 184000.0;  //  Resistencia del Flex Sensor doblado 90 grados
 
 //  Variables del MPU6050
 MPU6050 mpuSensor;                    //  Objeto para usar las funciones del MPU6050
@@ -222,66 +222,78 @@ void setup()
   mpuSensor.setXGyroOffset(0);
   mpuSensor.setYGyroOffset(0);
   mpuSensor.setZGyroOffset(0);
+
+  //  set offsets
+  mpuSensor.setXAccelOffset(-2184);
+  mpuSensor.setYAccelOffset(-570);
+  mpuSensor.setZAccelOffset(1428);
+  mpuSensor.setXGyroOffset(57);
+  mpuSensor.setYGyroOffset(4);
+  mpuSensor.setZGyroOffset(40);
+
+  digitalWrite(CALIB_PIN, LOW);
+  digitalWrite(READY_PIN, HIGH);
+  Serial.println("\nCalibration FINISHED!");
 }
 
 void loop()
 {
-  if (state==0){
-    Serial.println("\nReading sensors for first time...");
-    mean_mpu();
-    state++;
-    delay(1000);
-  }
-
-  if (state==1) {
-    Serial.println("\nCalculating offsets...");
-    calibration_mpu();
-    state++;
-    delay(1000);
-  }
-
-    if (state==2) {
-    mean_mpu();
-    digitalWrite(CALIB_PIN, LOW);
-    digitalWrite(READY_PIN, HIGH);
-    Serial.println("\nFINISHED!");
-    Serial.print("\nSensor readings with offsets:\t");
-    Serial.print(mean_ax); 
-    Serial.print("\t");
-    Serial.print(mean_ay); 
-    Serial.print("\t");
-    Serial.print(mean_az); 
-    Serial.print("\t");
-    Serial.print(mean_gx); 
-    Serial.print("\t");
-    Serial.print(mean_gy); 
-    Serial.print("\t");
-    Serial.println(mean_gz);
-    Serial.print("Your offsets:\t");
-    Serial.print(ax_offset); 
-    Serial.print("\t");
-    Serial.print(ay_offset); 
-    Serial.print("\t");
-    Serial.print(az_offset); 
-    Serial.print("\t");
-    Serial.print(gx_offset); 
-    Serial.print("\t");
-    Serial.print(gy_offset); 
-    Serial.print("\t");
-    Serial.println(gz_offset); 
-    Serial.println("\nData is printed as: acelX acelY acelZ giroX giroY giroZ");
-    Serial.println("Check that your sensor readings are close to 0 0 16384 0 0 0");
-    
-    mpuSensor.setXAccelOffset(ax_offset);
-    mpuSensor.setYAccelOffset(ay_offset);
-    mpuSensor.setZAccelOffset(az_offset);
-    mpuSensor.setXGyroOffset(gx_offset);
-    mpuSensor.setYGyroOffset(gy_offset);
-    mpuSensor.setZGyroOffset(gz_offset);
-    
-    while (1)
-    {
-      exec_time = millis();
+//  if (state==0){
+//    Serial.println("\nReading sensors for first time...");
+//    mean_mpu();
+//    state++;
+//    delay(1000);
+//  }
+//
+//  if (state==1) {
+//    Serial.println("\nCalculating offsets...");
+//    calibration_mpu();
+//    state++;
+//    delay(1000);
+//  }
+//
+//    if (state==2) {
+//    mean_mpu();
+//    digitalWrite(CALIB_PIN, LOW);
+//    digitalWrite(READY_PIN, HIGH);
+//    Serial.println("\nFINISHED!");
+//    Serial.print("\nSensor readings with offsets:\t");
+//    Serial.print(mean_ax); 
+//    Serial.print("\t");
+//    Serial.print(mean_ay); 
+//    Serial.print("\t");
+//    Serial.print(mean_az); 
+//    Serial.print("\t");
+//    Serial.print(mean_gx); 
+//    Serial.print("\t");
+//    Serial.print(mean_gy); 
+//    Serial.print("\t");
+//    Serial.println(mean_gz);
+//    Serial.print("Your offsets:\t");
+//    Serial.print(ax_offset); 
+//    Serial.print("\t");
+//    Serial.print(ay_offset); 
+//    Serial.print("\t");
+//    Serial.print(az_offset); 
+//    Serial.print("\t");
+//    Serial.print(gx_offset); 
+//    Serial.print("\t");
+//    Serial.print(gy_offset); 
+//    Serial.print("\t");
+//    Serial.println(gz_offset); 
+//    Serial.println("\nData is printed as: acelX acelY acelZ giroX giroY giroZ");
+//    Serial.println("Check that your sensor readings are close to 0 0 16384 0 0 0");
+//    
+//    mpuSensor.setXAccelOffset(ax_offset);
+//    mpuSensor.setYAccelOffset(ay_offset);
+//    mpuSensor.setZAccelOffset(az_offset);
+//    mpuSensor.setXGyroOffset(gx_offset);
+//    mpuSensor.setYGyroOffset(gy_offset);
+//    mpuSensor.setZGyroOffset(gz_offset);
+//    
+//    while (1)
+//    {
+//      exec_time = millis();
       flex = sense_flex();
       mpu = sense_mpu();
 
@@ -299,67 +311,70 @@ void loop()
         data[1] = 0;      //  Recto
       }
 
-      if ( dir = 0)
+      
+      if ( dir == 0)
       {
-        if (0 <= flex.flexAngle < 13) {
+        if ((0 <= flex.flexAngle) && (flex.flexAngle < 13)) {
           data[0] = 6;                            //  Máxima aceleración hacia delante
-        } else if (13 <= flex.flexAngle < 26) {
+        } else if ((13 <= flex.flexAngle) && (flex.flexAngle < 26)) {
           data[0] = 5;
-        } else if (26 <= flex.flexAngle < 39) {
+        } else if ((26 <= flex.flexAngle) && (flex.flexAngle < 39)) {
           data[0] = 4;
-        } else if (39 <= flex.flexAngle < 52) {
+        } else if ((39 <= flex.flexAngle) && (flex.flexAngle < 52)) {
           data[0] = 3;
-        } else if (52 <= flex.flexAngle < 65) {
+        } else if ((52 <= flex.flexAngle) && (flex.flexAngle < 65)) {
           data[0] = 2;
-        } else if (65 <= flex.flexAngle < 78) {
+        } else if ((65 <= flex.flexAngle) && (flex.flexAngle < 78)) {
           data[0] = 1;
-        } else if (78 <= flex.flexAngle <= 90) {
+        } else if (78 <= flex.flexAngle) {
           data[0] = 0;                            //  Parado
         }  
       }
-      else
+      else if (dir == 1)
       {
-        if (0 <= flex.flexAngle < 13) {
+        if ((0 <= flex.flexAngle) && (flex.flexAngle < 13)) {
           data[0] = 12;                           //  Máxima aceleración hacia atrás  
-        } else if (13 <= flex.flexAngle < 26) {
+        } else if ((13 <= flex.flexAngle) && (flex.flexAngle < 26)) {
           data[0] = 11;
-        } else if (26 <= flex.flexAngle < 39) {
+        } else if ((26 <= flex.flexAngle) && (flex.flexAngle < 39)) {
           data[0] = 10;
-        } else if (39 <= flex.flexAngle < 52) {
+        } else if ((39 <= flex.flexAngle) && (flex.flexAngle < 52)) {
           data[0] = 9;
-        } else if (52 <= flex.flexAngle < 65) {
+        } else if ((52 <= flex.flexAngle) && (flex.flexAngle < 65)) {
           data[0] = 8;
-        } else if (65 <= flex.flexAngle < 78) {
+        } else if ((65 <= flex.flexAngle) && (flex.flexAngle < 78)) {
           data[0] = 7;
-        } else if (78 <= flex.flexAngle <= 90) {
+        } else if (78 <= flex.flexAngle) {
           data[0] = 0;                            //  Parado
         } 
       }     
       
       radio.write(data, sizeof(data));
 
-      exec_time = millis()-exec_time;
-      Serial.print("Flex Sensor: ");
-      Serial.print("R = ");
-      Serial.print(flex.flexR);
-      Serial.print(" ; Ang = ");
-      Serial.println(flex.flexAngle);
-      Serial.print("MPU: ");
-      Serial.print("AngX = ");
-      Serial.print(mpu.angX);
-      Serial.print(" ; AngY = ");
-      Serial.println(mpu.angY);
-      Serial.print("Tiempo de ejecucion = ");
-      Serial.print(exec_time);
-      Serial.println(" ms");
-      Serial.print("Enviado: data[0]=");
-      Serial.print(data[0]);
-      Serial.print(" ; data[1]=");
-      Serial.println(data[1]);
-      Serial.println(" ");
+//      exec_time = millis()-exec_time;
+//      Serial.print("Flex Sensor: ");
+//      Serial.print("R = ");
+//      Serial.print(flex.flexR);
+//      Serial.print(" ; Ang = ");
+//      Serial.println(flex.flexAngle);
+//      Serial.print("MPU: ");
+//      Serial.print("AngX = ");
+//      Serial.print(mpu.angX);
+//      Serial.print(" ; AngY = ");
+//      Serial.println(mpu.angY);
+//      Serial.print("Tiempo de ejecucion = ");
+//      Serial.print(exec_time);
+//      Serial.println(" ms");
+//      Serial.print("Direccion: ");
+//      Serial.println(dir);
+//      Serial.print("Enviado: data[0]=");
+//      Serial.print(data[0]);
+//      Serial.print(" ; data[1]=");
+//      Serial.println(data[1]);
+//      Serial.println(" ");
       
       delay(10);
-    }
-  }
+//    }
+//  }
 }
 
