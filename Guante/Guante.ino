@@ -1,6 +1,9 @@
 #include <Wire.h>
 #include <I2Cdev.h>
 #include <MPU6050.h>
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
 
 /*
  * ************************************************************************************************************
@@ -23,33 +26,41 @@ struct sensorMpu_t {
  * ************************************************************************************************************
  */
 //  Variables generales
-struct sensorFlex_t flex;           //  Estructura para guardar los datos del Flex Sensor
-struct sensorMpu_t mpu;             //  Estructura para guardar los datos del MPU6050
-unsigned long exec_time;            //  Tiempo de ejecución del sensado y el envío de datos
+struct sensorFlex_t flex;             //  Estructura para guardar los datos del Flex Sensor
+struct sensorMpu_t mpu;               //  Estructura para guardar los datos del MPU6050
+unsigned long exec_time;              //  Tiempo de ejecución del sensado y el envío de datos
+int dir                 = 0;          //  Indica la dirección del coche
 
 //  Variables del Flex Sensor
-const int FLEX_PIN      = A0;       //  Pin de lectura del Flex Sensor
-const float VCC         = 4.98;     //  Tensión de alimentación del divisor de tensión
-const float R_DIV       = 10000;    //  Resistencia en serie con el Flex Sensor
-const float STRAIGHT_R  = 37300.0;  //  Resistencia del Flex Sensor estirado
-const float BEND_R      = 90000.0;  //  Resistencia del Flex Sensor doblado 90 grados
+const int FLEX_PIN      = A3;         //  Pin de lectura del Flex Sensor
+const float VCC         = 4.98;       //  Tensión de alimentación del divisor de tensión
+const float R_DIV       = 10000;      //  Resistencia en serie con el Flex Sensor
+const float STRAIGHT_R  = 38400.0;    //  Resistencia del Flex Sensor estirado
+const float BEND_R      = 1700000.0;  //  Resistencia del Flex Sensor doblado 90 grados
 
 //  Variables del MPU6050
-MPU6050 mpuSensor;                  //  Objeto para usar las funciones del MPU6050
-const int CALIB_PIN = 8;            //  Pin del led que indica que se está calibrando el dispositivo
-const int READY_PIN = 10;           //  Pin del led que indica que el dispositivo está listo para usarse
+MPU6050 mpuSensor;                    //  Objeto para usar las funciones del MPU6050
+const int CALIB_PIN = 5;              //  Pin del led que indica que se está calibrando el dispositivo
+const int READY_PIN = 4;             //  Pin del led que indica que el dispositivo está listo para usarse
 
-int buffersize=1000;                //Amount of readings used to average, make it higher to get more precision but sketch will be slower  (default:1000)
-int acel_deadzone=8;                //Acelerometer error allowed, make it lower to get more precision, but sketch may not converge  (default:8)
-int giro_deadzone=1;                //Giro error allowed, make it lower to get more precision, but sketch may not converge  (default:1)
-int mean_ax,mean_ay,mean_az;        //  Valores del acelerómetro para el calibrado
-int mean_gx,mean_gy,mean_gz;        //  Valores del giroscopo para el calibrado
-int state=0;                        //  Estado de la calibración
-int ax_offset,ay_offset,az_offset;  //  Offset del acelerómetro
-int gx_offset,gy_offset,gz_offset;  //  Offset del giroscopo
+int buffersize=1000;                  //  Cantidad de lecturas para realizar la media, haciendo este valor mayor se consigue más precisión pero el sketch será más lento (default:1000);
+int acel_deadzone=8;                  //  Error permitido al acelerómetro, haciendo este valor más pequeño se consigue más precisión pero puede que no converja  (default:8)
+int giro_deadzone=1;                  //  Error permitido al giroscopo, haciendo este valor más pequeño se consigue más precisión pero puede que no converja  (default:1)
+int mean_ax,mean_ay,mean_az;          //  Valores del acelerómetro para el calibrado
+int mean_gx,mean_gy,mean_gz;          //  Valores del giroscopo para el calibrado
+int state=0;                          //  Estado de la calibración
+int ax_offset,ay_offset,az_offset;    //  Offset del acelerómetro
+int gx_offset,gy_offset,gz_offset;    //  Offset del giroscopo
 
-float ang_x_prev, ang_y_prev;       //  Ángulos calculados en el muestreo anterior
-long tiempo_prev;                   //  Tiempo calculado en el muestreo anterior
+float ang_x_prev, ang_y_prev;         //  Ángulos calculados en el muestreo anterior
+long tiempo_prev;                     //  Tiempo calculado en el muestreo anterior
+
+//  Variable del NRF24L01
+const int pinCE = 9;                  //  Pin CE 
+const int pinCSN = 10;                //  Pin Chip Select del SPI
+RF24 radio(pinCE, pinCSN);            //  Objeto de tipo RF24 para usar las funciones del módulo de transmisión
+const uint64_t pipe = 0xE8E8F0F0E1LL; //  
+int data[2];                          //  Datos que se van a transmitir por RF a 2,4 GHz
 
 /*
  * ************************************************************************************************************
@@ -197,6 +208,8 @@ void setup()
 
   Wire.begin();
   mpuSensor.initialize();
+  radio.begin();
+  radio.openWritingPipe(pipe);
 
   if (mpuSensor.testConnection()) Serial.println("Sensor MPU6050 iniciado correctamente");
   else Serial.println("Error al iniciar el sensor MPU6050");
@@ -271,6 +284,60 @@ void loop()
       exec_time = millis();
       flex = sense_flex();
       mpu = sense_mpu();
+
+      if (mpu.angY > 45) {
+        dir = 0;          //  Hacia delante
+      } else if (mpu.angY < -45) {
+        dir = 1;          //  Hacia atrás
+      }
+
+      if (mpu.angX > 10) {
+        data[1] = 1;      //  Girar a la derecha
+      } else if (mpu.angX < -10) {
+        data[1] = 2;      //  Girar a la izquierda
+      } else {
+        data[1] = 0;      //  Recto
+      }
+
+      if ( dir = 0)
+      {
+        if (0 <= flex.flexAngle < 13) {
+          data[0] = 6;                            //  Máxima aceleración hacia delante
+        } else if (13 <= flex.flexAngle < 26) {
+          data[0] = 5;
+        } else if (26 <= flex.flexAngle < 39) {
+          data[0] = 4;
+        } else if (39 <= flex.flexAngle < 52) {
+          data[0] = 3;
+        } else if (52 <= flex.flexAngle < 65) {
+          data[0] = 2;
+        } else if (65 <= flex.flexAngle < 78) {
+          data[0] = 1;
+        } else if (78 <= flex.flexAngle <= 90) {
+          data[0] = 0;                            //  Parado
+        }  
+      }
+      else
+      {
+        if (0 <= flex.flexAngle < 13) {
+          data[0] = 12;                           //  Máxima aceleración hacia atrás  
+        } else if (13 <= flex.flexAngle < 26) {
+          data[0] = 11;
+        } else if (26 <= flex.flexAngle < 39) {
+          data[0] = 10;
+        } else if (39 <= flex.flexAngle < 52) {
+          data[0] = 9;
+        } else if (52 <= flex.flexAngle < 65) {
+          data[0] = 8;
+        } else if (65 <= flex.flexAngle < 78) {
+          data[0] = 7;
+        } else if (78 <= flex.flexAngle <= 90) {
+          data[0] = 0;                            //  Parado
+        } 
+      }     
+      
+      radio.write(data, sizeof(data));
+
       exec_time = millis()-exec_time;
       Serial.print("Flex Sensor: ");
       Serial.print("R = ");
@@ -285,8 +352,13 @@ void loop()
       Serial.print("Tiempo de ejecucion = ");
       Serial.print(exec_time);
       Serial.println(" ms");
+      Serial.print("Enviado: data[0]=");
+      Serial.print(data[0]);
+      Serial.print(" ; data[1]=");
+      Serial.println(data[1]);
       Serial.println(" ");
-      delay(1000);
+      
+      delay(10);
     }
   }
 }
