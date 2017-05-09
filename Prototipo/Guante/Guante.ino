@@ -35,8 +35,8 @@ int dir                 = 0;          //  Indica la dirección del coche
 const int FLEX_PIN      = A3;         //  Pin de lectura del Flex Sensor
 const float VCC         = 4.98;       //  Tensión de alimentación del divisor de tensión
 const float R_DIV       = 10000;      //  Resistencia en serie con el Flex Sensor
-const float STRAIGHT_R  = 38400.0;    //  Resistencia del Flex Sensor estirado
-const float BEND_R      = 184000.0;  //  Resistencia del Flex Sensor doblado 90 grados
+const float STRAIGHT_R  = 35000.0;    //  Resistencia del Flex Sensor estirado
+const float BEND_R      = 70000.0;  //  Resistencia del Flex Sensor doblado 90 grados
 
 //  Variables del MPU6050
 MPU6050 mpuSensor;                    //  Objeto para usar las funciones del MPU6050
